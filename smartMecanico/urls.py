@@ -5,11 +5,15 @@ from django.conf.urls.static import static
 from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView,TokenVerifyView,TokenBlacklistView,)
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from rest_framework import routers
+# IMPORT VIEWS
+from api.views.addressView import AddressModelViewSet
 from api.views.profileView import ProfileModelViewSet
 from api.views.userRegisterView import UserRegisterView
 from api.views.userView import UserViewSet
 
+# ROUTERS
 router = routers.DefaultRouter()
+router.register(r'address', AddressModelViewSet, basename='address')
 router.register(r'profile', ProfileModelViewSet, basename='profile')
 router.register(r'user', UserViewSet, basename='user')
 
