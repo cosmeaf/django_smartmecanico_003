@@ -14,7 +14,7 @@ class Profile(models.Model):
     
     user = models.OneToOneField(User, verbose_name='Usuário', on_delete=models.CASCADE)
     birthday=models.DateField('Aniversário',auto_now=False, null=True, blank=True)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,20}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = models.CharField('Contato', validators=[phone_regex], max_length=17, blank=True, null=True)
     image = models.ImageField('Foto',default='default.png', 
                               upload_to=get_file_path, height_field=None, width_field=None, max_length=None, null=True, blank=True)
