@@ -1,4 +1,5 @@
-from api.serializers.addressSerializer import AddressSerializer
+from api.serializers.vehicleSerializer import VehicleSerializer, VehicleDetailSerializer
+from api.serializers.addressSerializer import AddressSerializer, AddressDetailSerializer
 from api.serializers.profileSerializers import ProfileSerializer
 from api.serializers.userRegisterSerializer import UserRegisterSerializer
 from api.serializers.userSerializers import UserSerializer
