@@ -12,6 +12,7 @@ class Service(Base):
     # image = models.ImageField('Image', upload_to=get_file_path, height_field=None, width_field=None, max_length=None, null=True, blank=True)
     name = models.CharField('Titulo', max_length=255, editable=True)
     description = models.TextField('Descrição', editable=True)
+    isFavorited = models.BooleanField('Favoritos', default=False)
 
     class Meta:
         verbose_name = 'Service'
