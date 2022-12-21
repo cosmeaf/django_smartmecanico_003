@@ -1,3 +1,5 @@
+from api.serializers.hourServiceSerializer import HourServiceSerializer
+from api.serializers.serviceSerializer import ServiceSerializer
 from api.serializers.vehicleSerializer import VehicleSerializer, VehicleDetailSerializer
 from api.serializers.addressSerializer import AddressSerializer, AddressDetailSerializer
 from api.serializers.profileSerializers import ProfileSerializer
