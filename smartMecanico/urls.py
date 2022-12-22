@@ -6,7 +6,8 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from rest_framework import routers
 # IMPORT VIEWS
-# from api.views.hourAvailableView import HourAvailableModelViewSet
+from api.views.hourAvalibility import HourAvailibility
+from api.views.hourServiceView import HourServiceModelViewSet
 from api.views.scheduleView import ScheduleModelViewSet
 from api.views.serviceView import ServiceModelViewSet
 from api.views.vehicleView import VehicleModelViewSet
@@ -17,7 +18,8 @@ from api.views.userView import UserViewSet
 
 # ROUTERS
 router = routers.DefaultRouter()
-# router.register(r'hour-available', HourAvailableModelViewSet, basename='hour-available')
+router.register(r'hour-availability', HourAvailibility, basename='hour-availability')
+router.register(r'hour-service', HourServiceModelViewSet, basename='hour-service')
 router.register(r'schedule', ScheduleModelViewSet, basename='schedule')
 router.register(r'service', ServiceModelViewSet, basename='service')
 router.register(r'vehicle', VehicleModelViewSet, basename='vehicle')

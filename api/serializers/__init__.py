@@ -1,3 +1,4 @@
+from api.serializers.hourAvailibilitSerializer import HourAvailibilitySerializer
 from api.serializers.hourServiceSerializer import HourServiceSerializer
 from api.serializers.serviceSerializer import ServiceSerializer
 from api.serializers.vehicleSerializer import VehicleSerializer, VehicleDetailSerializer

@@ -20,6 +20,7 @@ class ScheduleSerializer(serializers.ModelSerializer):
         'address': instance.address.cep,
         'service': instance.service.name,
         'vehicle': instance.vehicle.brand,
+        # 'hour': instance.hour.hour,
         'hour': instance.hour,
         'day': instance.day,
       }
@@ -29,7 +30,7 @@ class ScheduleDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Schedule
-        # # fields = '__all__'
+        # fields = '__all__'
         exclude = ['created_at', 'updated_at', 'deleted_at']
         extra_kwargs = {'user': {'required': True}}
         
@@ -40,6 +41,7 @@ class ScheduleDetailSerializer(serializers.ModelSerializer):
         'address': instance.address.cep,
         'service': instance.service.name,
         'vehicle': instance.vehicle.brand,
+        # 'hour': instance.hour.hour,
         'hour': instance.hour,
         'day': instance.day,
       }
