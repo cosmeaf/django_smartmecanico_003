@@ -10,7 +10,7 @@ class ScheduleSerializer(serializers.ModelSerializer):
         model = Schedule
         # fields = '__all__'
         # depth = 1
-        # exclude = ['created_at', 'updated_at', 'deleted_at']
+        exclude = ['created_at', 'updated_at', 'deleted_at']
         # extra_kwargs = {'user': {'required': True}}
         
     def to_representation(self, instance):

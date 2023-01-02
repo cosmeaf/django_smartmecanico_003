@@ -1,3 +1,10 @@
+from api.serializers.calibrateTireSerializer import CalibrateTireSerializer, CalibrateTireDetailSerializer
+from api.serializers.fineTrafficSerializer import FineTrafficSerializer, FineTrafficDetailSerializer
+from api.serializers.financingSerializer import FinancingSerializer, FinancingDetailSerializer
+from api.serializers.insuranceSerializer import InsuranceSerializer, InsuranceDetailSerializer
+from api.serializers.ipvaSerializers import IpvaSerializer, IpvaDetailSerializer
+from api.serializers.maintenanceSerializer import MaintenanceSerializer, MaintenanceDetailSerializer
+from api.serializers.supplySerializer import SupplySerializer, SupplyDetailSerializer
 from api.serializers.hourAvailibilitSerializer import HourAvailibilitySerializer
 from api.serializers.hourServiceSerializer import HourServiceSerializer
 from api.serializers.serviceSerializer import ServiceSerializer

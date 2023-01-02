@@ -7,8 +7,15 @@ from api.models.vehicle import Vehicle
 from api.models.service import Service
 from api.models.schedule import Schedule
 from api.models.hourService import HourService
-
+from api.models.supply import Supply
+from api.models.maintenance import Maintenance
+from api.models.ipva import Ipva
+from api.models.insurance import Insurance
+from api.models.financing import Financing
+from api.models.fineTraffic import FineTraffic
+from api.models.calibrateTire import CalibrateTire
 from django.contrib.auth.models import User
+
 
 class ProfileInline(admin.StackedInline):
     model = Profile
@@ -194,4 +201,210 @@ class HourServiceAdmin(admin.ModelAdmin):
         """
         obj.user = request.user
         super().save_model(request, obj, form, change)
+
+@admin.register(Supply)
+class SupplyAdmin(admin.ModelAdmin):
+    list_display = ('date','liter', 'price','kilometer','total_expense','total_liters', 'user')
+    ordering = ['created_at']
+    search_fields = ['date']
+    # exclude = ['user', ]
+    list_display_links = ('date',)
+    readonly_fields = ['user','total_expense', 'created_at','total_liters', 'updated_at', 'deleted_at']
+
+    def usuario(self, instance):
+        return f'{instance.user.get_full_name()}'
+
+    def get_queryset(self, request):
+        """
+        Show result user by id
+        """
+        queryset = super(SupplyAdmin, self).get_queryset(request)
+        if (request.user.is_superuser):
+            return queryset
+        else:
+            return queryset.filter(user_id=request.user)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Change Method for save Vehicle data on Database
+        """
+        obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+@admin.register(Maintenance)
+class MaintenanceAdmin(admin.ModelAdmin):
+    list_display = ('date','name', 'description', 'start_kilometer', 'end_kilometer', 'user')
+    ordering = ['created_at']
+    search_fields = ['date', 'name', 'user']
+    # exclude = ['user', ]
+    list_display_links = ('date',)
+    readonly_fields = ['user', 'created_at', 'updated_at', 'deleted_at']
+
+    def usuario(self, instance):
+        return f'{instance.user.get_full_name()}'
+
+    def get_queryset(self, request):
+        """
+        Show result user by id
+        """
+        queryset = super(MaintenanceAdmin, self).get_queryset(request)
+        if (request.user.is_superuser):
+            return queryset
+        else:
+            return queryset.filter(user_id=request.user)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Change Method for save Vehicle data on Database
+        """
+        obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+@admin.register(Ipva)
+class IpvaAdmin(admin.ModelAdmin):
+    list_display = ('date', 'date', 'price','user')
+    ordering = ['created_at']
+    search_fields = ['date', 'date', 'price', 'user']
+    # exclude = ['user', ]
+    list_display_links = ('date',)
+    readonly_fields = ['user', 'created_at', 'updated_at', 'deleted_at']
+
+    def usuario(self, instance):
+        return f'{instance.user.get_full_name()}'
+
+    def get_queryset(self, request):
+        """
+        Show result user by id
+        """
+        queryset = super(IpvaAdmin, self).get_queryset(request)
+        if (request.user.is_superuser):
+            return queryset
+        else:
+            return queryset.filter(user_id=request.user)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Change Method for save Ipva data on Database
+        """
+        obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+
+@admin.register(Insurance)
+class InsuranceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price','user')
+    ordering = ['created_at']
+    search_fields = ['name', 'price', 'user']
+    # exclude = ['user', ]
+    list_display_links = ('name',)
+    readonly_fields = ['user', 'created_at', 'updated_at', 'deleted_at']
+
+    def usuario(self, instance):
+        return f'{instance.user.get_full_name()}'
+
+    def get_queryset(self, request):
+        """
+        Show result user by id
+        """
+        queryset = super(InsuranceAdmin, self).get_queryset(request)
+        if (request.user.is_superuser):
+            return queryset
+        else:
+            return queryset.filter(user_id=request.user)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Change Method for save Insurance data on Database
+        """
+        obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+
+@admin.register(Financing)
+class FinancingAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price','user')
+    ordering = ['created_at']
+    search_fields = ['name', 'price', 'user']
+    # exclude = ['user', ]
+    list_display_links = ('name',)
+    readonly_fields = ['user', 'created_at', 'updated_at', 'deleted_at']
+
+    def usuario(self, instance):
+        return f'{instance.user.get_full_name()}'
+
+    def get_queryset(self, request):
+        """
+        Show result user by id
+        """
+        queryset = super(FinancingAdmin, self).get_queryset(request)
+        if (request.user.is_superuser):
+            return queryset
+        else:
+            return queryset.filter(user_id=request.user)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Change Method for save Financing data on Database
+        """
+        obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+@admin.register(FineTraffic)
+class FineTrafficAdmin(admin.ModelAdmin):
+    list_display = ('date', 'number', 'point', 'description', 'price', 'user')
+    ordering = ['created_at']
+    search_fields = ['number', 'price', 'user']
+    # exclude = ['user', ]
+    list_display_links = ('number',)
+    readonly_fields = ['user', 'created_at', 'updated_at', 'deleted_at']
+
+    def usuario(self, instance):
+        return f'{instance.user.get_full_name()}'
+
+    def get_queryset(self, request):
+        """
+        Show result user by id
+        """
+        queryset = super(FineTrafficAdmin, self).get_queryset(request)
+        if (request.user.is_superuser):
+            return queryset
+        else:
+            return queryset.filter(user_id=request.user)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Change Method for save FineTraffic data on Database
+        """
+        obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+@admin.register(CalibrateTire)
+class CalibrateTireAdmin(admin.ModelAdmin):
+    list_display = ('date', 'libra','user')
+    ordering = ['created_at']
+    search_fields = ['date', 'user']
+    # exclude = ['user', ]
+    list_display_links = ('libra',)
+    readonly_fields = ['user', 'created_at', 'updated_at', 'deleted_at']
+
+    def usuario(self, instance):
+        return f'{instance.user.get_full_name()}'
+
+    def get_queryset(self, request):
+        """
+        Show result user by id
+        """
+        queryset = super(CalibrateTireAdmin, self).get_queryset(request)
+        if (request.user.is_superuser):
+            return queryset
+        else:
+            return queryset.filter(user_id=request.user)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Change Method for save Calibrate Tire data on Database
+        """
+        obj.user = request.user
+        super().save_model(request, obj, form, change)
+
 

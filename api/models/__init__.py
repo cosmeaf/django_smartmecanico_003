@@ -5,3 +5,10 @@ from api.models.vehicle import Vehicle
 from api.models.service import Service
 from api.models.schedule import Schedule
 from api.models.hourService import HourService
+from api.models.supply import Supply
+from api.models.maintenance import Maintenance
+from api.models.ipva import Ipva
+from api.models.insurance import Insurance
+from api.models.financing import Financing
+from api.models.fineTraffic import FineTraffic
+from api.models.calibrateTire import CalibrateTire
