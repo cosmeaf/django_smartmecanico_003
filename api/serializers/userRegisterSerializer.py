@@ -5,7 +5,8 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(required=True,validators=[UniqueValidator(queryset=User.objects.all())])
+    email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all(),message="E-mail já Cadastrado",)])
+    username = serializers.CharField(validators=[UniqueValidator(queryset=User.objects.all(),message="Usuário já cadastrato")])
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
 
