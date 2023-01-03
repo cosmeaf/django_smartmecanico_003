@@ -1,9 +1,10 @@
 
 # Start Settings
 #############################
+from pathlib import Path
 import os
 from datetime import timedelta
-from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,7 +19,7 @@ SECRET_KEY = 'django-insecure-=#e4c6%f!+v5mu)7#kqg)-bq7%0ky8+587t966k8o*f!2!tpe9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'http://smartmecanico.duckdns.org/', '0.0.0.0', 'https://smartmecanico.duckdns.org/']
 
 
 # Application definition
@@ -115,15 +116,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'statifiles')
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATICFILES_DIRS = [
-	os.path.join(BASE_DIR, 'static')
-]
-
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
+if(DEBUG==True):
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
+    STATICFILES_DIRS=[
+         os.path.join(BASE_DIR,'static')
+    ]
+    STATIC_ROOT='/usr/src/app/static'
+    MEDIA_ROOT='/usr/src/app/media'
+else:
+    STATIC_URL = '/static/'
+    MEDIA_URL='/media/'
+    STATIC_ROOT=os.path.join(BASE_DIR,'statifiles')
+    MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
