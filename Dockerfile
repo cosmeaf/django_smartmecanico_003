@@ -15,9 +15,6 @@ RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
 
 # copy project
 COPY . /usr/src/app
-COPY ./db.sqlite3 /usr/src/app
-COPY ./static /usr/src/app
-COPY ./statifiles /usr/src/app
 
 EXPOSE 8001
 
