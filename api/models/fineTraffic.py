@@ -4,11 +4,11 @@ from api.models.base import Base
 
 class FineTraffic(Base, models.Model):
     """Model definition for Fine Traffic."""
-    date = models.DateField('Data da Multa', auto_now=False, auto_now_add=False)
-    number = models.IntegerField("Numero da Multa")
-    point = models.DecimalField('Numero de Ponto', max_digits=2, decimal_places=0, null=False, blank=False)
-    description = models.TextField("Observação", null=False, blank=False)
-    price = models.DecimalField('Preço da Multa', max_digits=10, decimal_places=2)
+    date = models.CharField('Data da Multa', max_length=10, null=True, blank=True)
+    number = models.CharField("Numero da Multa", max_length=10, null=True, blank=True)
+    point = models.DecimalField('Numero de Ponto', max_digits=2, decimal_places=0, null=True, blank=True)
+    description = models.TextField("Observação", max_length=200, null=True, blank=True)
+    price = models.DecimalField('Preço da Multa', max_digits=10, decimal_places=2, null=True, blank=True)
     user = models.ForeignKey(User, verbose_name='Usuário', on_delete=models.CASCADE)
     
     class Meta:
