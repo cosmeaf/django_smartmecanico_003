@@ -292,11 +292,11 @@ class IpvaAdmin(admin.ModelAdmin):
 
 @admin.register(Insurance)
 class InsuranceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price','user')
+    list_display = ('name', 'price', 'due_date', 'policy', 'broker_name', 'user')
     ordering = ['created_at']
-    search_fields = ['name', 'price', 'user']
+    search_fields = ['name', 'price', 'due_date', 'policy', 'broker_name', 'user']
     # exclude = ['user', ]
-    list_display_links = ('name',)
+    list_display_links = ('name', 'price', 'due_date', 'policy', 'broker_name', 'user')
     readonly_fields = ['user', 'created_at', 'updated_at', 'deleted_at']
 
     def usuario(self, instance):
