@@ -7,7 +7,7 @@ class Insurance(Base, models.Model):
     """Model definition for vehicle_insurance."""
     name = models.CharField("Nome Seguradora", max_length=50)
     price = models.DecimalField('Preço', max_digits=10, decimal_places=2)
-    due_date=models.CharField('Data Vencimento', max_length=8, null=True, blank=True)
+    due_date=models.CharField('Data Vencimento', max_length=10, null=True, blank=True)
     policy = models.CharField("Numero Apolice:",max_length=100, null=True, blank=True)
     broker_name = models.CharField("Nome Corretora", max_length=50, null=True, blank=True)
     agent_name = models.CharField("Nome Agente", max_length=50, null=True, blank=True)
