@@ -7,8 +7,8 @@ class Maintenance(Base, models.Model):
     date = models.DateField('Data Manutenção', auto_now=False, auto_now_add=False)
     name = models.CharField('Tipo de Serviço',  max_length=100, blank=False, null=False)
     description = models.CharField("Descrição", max_length=100, blank=True, null=True)
-    start_kilometer = models.DecimalField('Km Iníco',default=000.000,  max_digits=6, decimal_places=3, blank=False, null=False)
-    end_kilometer = models.DecimalField('Km Fim',default=000.000,  max_digits=6, decimal_places=3, blank=False, null=False)
+    start_kilometer = models.DecimalField('Km Saída',default=000.000,  max_digits=6, decimal_places=3, blank=False, null=False)
+    end_kilometer = models.DecimalField('Km Retorno',default=000.000,  max_digits=6, decimal_places=3, blank=False, null=False)
     user = models.ForeignKey(User, verbose_name='Usuário', on_delete=models.CASCADE)
     
     class Meta:

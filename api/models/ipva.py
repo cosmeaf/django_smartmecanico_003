@@ -6,7 +6,7 @@ class Ipva(Base, models.Model):
     """Model definition for IPVA."""
     date = models.DateField('Data Pagamento', auto_now=False, auto_now_add=False)
     date = models.DateField('Data Vencimento', auto_now=False, auto_now_add=False)
-    price = models.DecimalField('Preço', max_digits=10, decimal_places=2)
+    price = models.DecimalField('Preço', max_digits=10, decimal_places=2, blank=False, null=False)
 
     user = models.ForeignKey(User, verbose_name='Usuário', on_delete=models.CASCADE)
     
