@@ -1,3 +1,4 @@
+from api.views.emailApiView import EmailAPI
 from api.views.calibrateTireView import CalibrateTireModelViewSet
 from api.views.fineTrafficView import FineTrafficModelViewSet
 from api.views.insuranceView import InsuranceModelViewSet

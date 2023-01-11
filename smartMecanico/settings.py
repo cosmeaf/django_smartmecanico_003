@@ -4,20 +4,24 @@
 from pathlib import Path
 import os
 from datetime import timedelta
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=#e4c6%f!+v5mu)7#kqg)-bq7%0ky8+587t966k8o*f!2!tpe9'
+# SECRET_KEY = 'django-insecure-=#e4c6%f!+v5mu)7#kqg)-bq7%0ky8+587t966k8o*f!2!tpe9'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+# DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['*', 'http://smartmecanico.duckdns.org/', '0.0.0.0', 'https://smartmecanico.duckdns.org/']
 
@@ -83,6 +87,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': config('NAME'),
+#         'USER': config('USER'),
+#         'PASSWORD': config('PASSWORD'),
+#         'HOST': config('HOST'),
+#         'PORT': config('PORT')
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -120,6 +135,10 @@ USE_TZ = True
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
+AUTHENTICATION_BACKENDS = [
+    'api.authentication.Email_OR_Username',
+]
+
 if(DEBUG==True):
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
@@ -137,16 +156,17 @@ else:
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+#EMAIL_USE_SSL = config('EMAIL_USE_SSL')
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_METHODS = (
-'GET',
-'POST',
-'PUT',
-'PATCH',
-'DELETE',
-'OPTIONS'
-)
+CORS_ALLOW_METHODS = ('GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS')
 CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
@@ -174,3 +194,6 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
 }
+
+LOGIN_URL = 'rest_framework:login'
+LOGOUT_URL = 'rest_framework:logout'

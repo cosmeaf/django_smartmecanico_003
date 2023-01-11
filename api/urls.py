@@ -1,8 +1,8 @@
-from django.urls import path
-# from api.views.hourAvalibility import HourAvailibility
+from django.urls import path, re_path
+from api.views.emailApiView import EmailAPI
 
 # app_name = "available-hour"
 
 urlpatterns = [
-  # path('available-hour/', HourAvailibility.as_view(), name='available-hour')
+   re_path('send-email/', EmailAPI.as_view()),
 ]
